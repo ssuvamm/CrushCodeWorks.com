@@ -1,0 +1,37 @@
+---
+import '@/styles/global.css';
+import SEO from '@/components/SEO.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ThemeScript from '@/components/ThemeScript.astro';
+import ScrollProgress from '@/components/ScrollProgress';
+import AnimatedCursor from '@/components/AnimatedCursor';
+import { agencySchema } from '@/lib/seo';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <ThemeScript />
+    <SEO title={title} description={description} schema={agencySchema()} />
+    <ViewTransitions />
+  </head>
+  <body class="noise min-h-screen">
+    <ScrollProgress client:load />
+    <AnimatedCursor client:idle />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

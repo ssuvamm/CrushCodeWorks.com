@@ -1,0 +1,24 @@
+---
+import ThemeToggle from '@/components/ThemeToggle';
+const links = [
+  ['Services', '/services'],
+  ['Work', '/work'],
+  ['About', '/about'],
+  ['Blog', '/blog'],
+  ['Contact', '/contact']
+];
+---
+<header class="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
+  <nav class="container flex h-16 items-center justify-between">
+    <a href="/" class="font-heading text-xl tracking-tight">CrushCodeWorks</a>
+    <ul class="hidden items-center gap-6 md:flex">
+      {links.map(([label, href]) => (
+        <li><a href={href} class="text-sm text-muted-foreground transition hover:text-foreground">{label}</a></li>
+      ))}
+    </ul>
+    <div class="flex items-center gap-2">
+      <ThemeToggle client:load />
+      <a href="/contact" class="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">Start a project</a>
+    </div>
+  </nav>
+</header>

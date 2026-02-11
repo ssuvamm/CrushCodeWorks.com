@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+<BaseLayout title="Blog | CrushCodeWorks">
+  <section class="container py-20">
+    <h1 class="font-heading text-5xl">Insights for SaaS and digital growth teams</h1>
+    <div class="mt-10 space-y-6">
+      {posts.map((post) => (
+        <article class="rounded-2xl border border-border bg-card p-6">
+          <p class="text-xs text-primary">{post.data.pubDate.toDateString()}</p>
+          <h2 class="mt-2 font-heading text-3xl"><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+          <p class="mt-2 text-muted-foreground">{post.data.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
