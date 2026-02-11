@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://crushcodeworks.com',
   output: 'static',
+  adapter: 'node'({
+      mode: 'standalone'
+  }),
   integrations: [
     tailwind({ applyBaseStyles: false }),
     react(),
