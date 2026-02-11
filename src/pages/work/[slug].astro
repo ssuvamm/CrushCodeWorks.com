@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  return entries.map((entry) => ({ params: { slug: entry.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = slug ? await getEntry('work', slug) : undefined;
+if (!entry) return Astro.redirect('/work');
+const { Content } = await entry.render();
+---
+<BaseLayout title={`${entry.data.title} | CrushCodeWorks`}>
+  <article class="container py-20">
+    <p class="text-xs uppercase tracking-[0.18em] text-primary">{entry.data.industry} · {entry.data.year}</p>
+    <h1 class="mt-3 font-heading text-5xl">{entry.data.title}</h1>
+    <p class="mt-4 max-w-3xl text-muted-foreground">{entry.data.excerpt}</p>
+    <div class="mt-10 space-y-4 text-muted-foreground"><Content /></div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const services = [
+  ['web-development', 'Web Development', 'Fast, SEO-first websites that convert qualified traffic into pipeline.'],
+  ['saas-applications', 'SaaS Applications', 'Scalable product architecture and polished UI for growth-stage SaaS.'],
+  ['e-commerce', 'E-commerce', 'Conversion-optimized storefronts and custom commerce flows from ₹50k+.'],
+  ['ui-ux-design', 'UI/UX Design', 'Research-backed interfaces designed for adoption and speed.'],
+  ['performance-optimization', 'Performance Optimization', 'CWV improvements that boost rankings and conversion rates.'],
+  ['white-label-development', 'White-label development', 'Invisible extension of your agency team under your brand.']
+];
+---
+<BaseLayout title="Services | CrushCodeWorks">
+  <section class="container py-20">
+    <h1 class="font-heading text-5xl">Services engineered for outcomes</h1>
+    <p class="mt-4 max-w-2xl text-muted-foreground">Each engagement includes clear KPIs, milestone visibility, and proactive optimization.</p>
+  </section>
+  <section class="container pb-20">
+    <div class="space-y-8">
+      {services.map(([slug, title, copy]) => (
+        <article id={slug} class="rounded-2xl border border-border bg-card p-8">
+          <h2 class="font-heading text-3xl">{title}</h2>
+          <p class="mt-3 max-w-2xl text-muted-foreground">{copy}</p>
+          <p class="mt-4 text-sm">Outcome: Faster launch cycles, measurable funnel lift, and maintainable code quality.</p>
+          <a href="/contact" class="mt-4 inline-block text-sm text-primary">Discuss {title} →</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactForm from '@/components/ContactForm';
+---
+<BaseLayout title="Contact CrushCodeWorks">
+  <section class="container py-20">
+    <h1 class="font-heading text-5xl">Let’s build your next growth engine.</h1>
+    <p class="mt-4 max-w-2xl text-muted-foreground">Share your requirements and we will return with scope, timeline, and cost recommendations.</p>
+    <div class="mt-10 grid gap-8 lg:grid-cols-2">
+      <ContactForm client:load />
+      <div class="rounded-2xl border border-border bg-card p-4">
+        <iframe
+          title="Book a call"
+          src="https://cal.com"
+          loading="lazy"
+          class="h-[420px] w-full rounded-xl"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ScrollStory from '@/components/animation/ScrollStory';
+---
+<BaseLayout title="About CrushCodeWorks">
+  <section class="container py-20">
+    <h1 class="font-heading text-5xl">Built for leaders who need clarity, speed, and quality.</h1>
+    <p class="mt-6 max-w-3xl text-muted-foreground">Our mission is to make premium product execution accessible to global teams without agency bloat.</p>
+  </section>
+  <section class="container py-14">
+    <h2 class="font-heading text-4xl">Philosophy</h2>
+    <p class="mt-4 max-w-2xl text-muted-foreground">Every sprint must tie to business outcomes: better conversion, faster onboarding, higher retention, or lower support load.</p>
+  </section>
+  <section class="container py-14">
+    <h2 class="font-heading text-4xl">How we work</h2>
+    <div class="mt-8"><ScrollStory client:visible /></div>
+  </section>
+</BaseLayout>
