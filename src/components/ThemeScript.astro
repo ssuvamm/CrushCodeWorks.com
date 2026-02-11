@@ -1,0 +1,9 @@
+<script is:inline>
+  (() => {
+    const storageKey = 'ccw-theme';
+    const saved = localStorage.getItem(storageKey);
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const dark = saved ? saved === 'dark' : systemDark;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>

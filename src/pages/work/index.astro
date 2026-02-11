@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import WorkFilter from '@/components/WorkFilter';
+const projects = await getCollection('work');
+const items = projects.map((p) => ({ title: p.data.title, industry: p.data.industry, href: `/work/${p.slug}`, excerpt: p.data.excerpt }));
+---
+<BaseLayout title="Our Work | CrushCodeWorks">
+  <section class="container py-20">
+    <h1 class="font-heading text-5xl">Case studies with measurable impact</h1>
+    <p class="mt-4 max-w-2xl text-muted-foreground">Explore launches that improved traffic quality, conversion rate, and product adoption.</p>
+    <div class="mt-10"><WorkFilter client:visible items={items} /></div>
+  </section>
+</BaseLayout>

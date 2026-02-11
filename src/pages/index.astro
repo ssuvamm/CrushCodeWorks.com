@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HeroReveal from '@/components/animation/HeroReveal';
+import MagneticButton from '@/components/MagneticButton';
+import StatsStrip from '@/components/StatsStrip';
+import ScrollStory from '@/components/animation/ScrollStory';
+import { getCollection } from 'astro:content';
+
+const featured = (await getCollection('work')).filter((item) => item.data.featured).slice(0, 3);
+---
+<BaseLayout title="CrushCodeWorks | Premium yet affordable digital product studio">
+  <section class="container py-20 md:py-28">
+    <p class="text-sm uppercase tracking-[0.2em] text-primary">Premium outcomes. Lean execution.</p>
+    <HeroReveal client:idle />
+    <p class="mt-6 max-w-2xl text-lg text-muted-foreground">We ship conversion-focused websites, SaaS platforms, and e-commerce systems for teams that care about speed, quality, and measurable business growth.</p>
+    <div class="mt-10"><MagneticButton client:idle /></div>
+  </section>
+
+  <section class="container py-10"><StatsStrip client:visible /></section>
+
+  <section class="container py-20">
+    <h2 class="font-heading text-4xl">Services built to move revenue</h2>
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      {['Web Development', 'SaaS Applications', 'E-commerce', 'UI/UX Design', 'Performance Optimization', 'White-label development'].map((service) => (
+        <a href="/services" class="rounded-2xl border border-border bg-card p-6 hover:border-primary/50">
+          <h3 class="font-heading text-2xl">{service}</h3>
+          <p class="mt-2 text-sm text-muted-foreground">Clear scope, senior execution, measurable ROI.</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container py-20">
+    <h2 class="font-heading text-4xl">Featured work</h2>
+    <p class="mt-3 max-w-xl text-muted-foreground">High-performing launches across SaaS, enterprise, and agency white-label partnerships.</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      {featured.map((entry) => (
+        <a href={`/work/${entry.slug}`} class="rounded-2xl border border-border p-6 hover:-translate-y-1 hover:border-primary/60">
+          <p class="text-xs text-primary">{entry.data.industry}</p>
+          <h3 class="mt-2 font-heading text-2xl">{entry.data.title}</h3>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.excerpt}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container py-20">
+    <h2 class="font-heading text-4xl">Process that removes delivery risk</h2>
+    <div class="mt-8"><ScrollStory client:visible /></div>
+  </section>
+
+  <section class="container py-20">
+    <h2 class="font-heading text-4xl">Client outcomes</h2>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {['"We doubled demo bookings in 8 weeks."', '"Enterprise rollout hit every security milestone."', '"Best white-label partner we have worked with."'].map((quote) => (
+        <blockquote class="rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground">{quote}</blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="container pb-24">
+    <div class="rounded-3xl border border-primary/40 bg-primary/10 p-10 text-center">
+      <h2 class="font-heading text-4xl">Projects start at ₹30k. E-commerce at ₹50k+.</h2>
+      <p class="mt-3 text-muted-foreground">Get a focused estimate in 24 hours.</p>
+      <a href="/contact" class="mt-6 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Talk to our team</a>
+    </div>
+  </section>
+</BaseLayout>
